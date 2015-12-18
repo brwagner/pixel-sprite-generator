@@ -16,19 +16,19 @@ namespace PSG
         public bool mirrorY;
 
         /*   @param {data} Integer array describing which parts of the sprite should be
-	     *   empty, body, and border. The mask only defines a semi-ridgid stucture
-	     *   which might not strictly be followed based on randomly generated numbers.
-	     *
-	     *      -1 = Always border (black)
-	     *       0 = Empty
-	     *       1 = Randomly chosen Empty/Body
-	     *       2 = Randomly chosen Border/Body
-	     *
-	     *   @param {width} Width of the mask data array
-	     *   @param {height} Height of the mask data array
-	     *   @param {mirrorX} A boolean describing whether the mask should be mirrored on the x axis
-	     *   @param {mirrorY} A boolean describing whether the mask should be mirrored on the y axis
-	     */
+         *   empty, body, and border. The mask only defines a semi-ridgid stucture
+         *   which might not strictly be followed based on randomly generated numbers.
+         *
+         *      -1 = Always border (black)
+         *       0 = Empty
+         *       1 = Randomly chosen Empty/Body
+         *       2 = Randomly chosen Border/Body
+         *
+         *   @param {width} Width of the mask data array
+         *   @param {height} Height of the mask data array
+         *   @param {mirrorX} A boolean describing whether the mask should be mirrored on the x axis
+         *   @param {mirrorY} A boolean describing whether the mask should be mirrored on the y axis
+         */
         private Mask (int[,] data, bool mirrorX, bool mirrorY)
         {
             this.width = data.GetLength (1);
@@ -100,16 +100,16 @@ namespace PSG
         private Color ForegroundColor { get; set; }
 
         /*
-		 *   @param {mask} 2D template used to generate the sprite
-	     *   @param {isColored} Should we add color to the sprite?
-	     *   @param {edgeBrightness} 1 for heavy outlines, 0 for an undefined blob of color
-	     *   @param {colorVariations} How often does color change
-	     *   @param {brightnessNoise} How much color fades on edges of the sprite
-	     *   @param {saturation} How saturated is the color of the sprite
-	     *   @param {scale} Changes the size of the output texture for the sprite
-	     *   @Param {backgroundColor} Color of 0s in the mask
-	     *   @Param {foregroundColor} Sets fill color to a specific color
-	     */
+         *   @param {mask} 2D template used to generate the sprite
+         *   @param {isColored} Should we add color to the sprite?
+         *   @param {edgeBrightness} 1 for heavy outlines, 0 for an undefined blob of color
+         *   @param {colorVariations} How often does color change
+         *   @param {brightnessNoise} How much color fades on edges of the sprite
+         *   @param {saturation} How saturated is the color of the sprite
+         *   @param {scale} Changes the size of the output texture for the sprite
+         *   @Param {backgroundColor} Color of 0s in the mask
+         *   @Param {foregroundColor} Sets fill color to a specific color
+         */
         public PixelSpriteGenerator (Mask mask,
                                      bool isColored = true,
                                      float edgeBrightness = 0.3f,
@@ -132,8 +132,8 @@ namespace PSG
         }
 
         /*
-		 *   Creates sprite based on mask and aesthetic parameters
-		 */
+         *   Creates sprite based on mask and aesthetic parameters
+         */
         public Sprite CreateSprite ()
         {
             // double width and height if mirroring
@@ -156,9 +156,9 @@ namespace PSG
         }
 
         /*
-		 *   Copies the mask data into the template data array at location (0, 0).
-		 *   The mask may be smaller than the template data array
-		 */
+         *   Copies the mask data into the template data array at location (0, 0).
+         *   The mask may be smaller than the template data array
+         */
         private void applyMask (int[,] data, Mask mask)
         {
             for (int y = 0; y < mask.height; y++) {
@@ -169,8 +169,8 @@ namespace PSG
         }
 
         /*
-		 *   Mirrors the template data horizontally.
-		 */
+         *   Mirrors the template data horizontally.
+         */
         private void mirrorX (int[,] data, int w, int h)
         {
             for (int y = 0; y < h; y++) {
@@ -181,8 +181,8 @@ namespace PSG
         }
 
         /*
-		 *   Mirrors the template data vertically.
-		 */
+         *   Mirrors the template data vertically.
+         */
         private void mirrorY (int[,] data, int w, int h)
         {
             for (int y = 0; y < h / 2; y++) {
@@ -193,14 +193,14 @@ namespace PSG
         }
 
         /*
-		 *   Apply a random sample to the sprite template.
-		 *
-		 *   If the template contains a 1 (internal body part) at location (x, y), then
-		 *   there is a 50% chance it will be turned empty. If there is a 2, then there
-		 *   is a 50% chance it will be turned into a body or border.
-		 *
-		 *   (feel free to play with this logic for interesting results)
-		 */
+         *   Apply a random sample to the sprite template.
+         *
+         *   If the template contains a 1 (internal body part) at location (x, y), then
+         *   there is a 50% chance it will be turned empty. If there is a 2, then there
+         *   is a 50% chance it will be turned into a body or border.
+         *
+         *   (feel free to play with this logic for interesting results)
+         */
         private void generateRandomSample (int[,] data, int w, int h)
         {
             for (int y = 0; y < h; y++) {
@@ -223,9 +223,9 @@ namespace PSG
         }
 
         /*
-		 *   Applies edges to any template location that is positive in
-    	 *   value and is surrounded by empty (0) pixels.
-		 */
+         *   Applies edges to any template location that is positive in
+         *   value and is surrounded by empty (0) pixels.
+         */
         private void generateEdges (int[,] data, int w, int h)
         {
             for (int y = 0; y < h; y++) {
@@ -249,8 +249,8 @@ namespace PSG
         }
 
         /*
-		 *   Renders a Sprite based on template data
-		 */
+         *   Renders a Sprite based on template data
+         */
         private Sprite renderToSprite (int[,] data, int w, int h)
         {
             Texture2D texture = new Texture2D (w * Scale, h * Scale, TextureFormat.ARGB32, false);
